@@ -185,7 +185,7 @@ export default class ImageFul extends Component {
           style={this.state.hover2 || this.state.handleMouseMove2 ? hoverCircleStyle : grabCircleStyle}/>
       </g>
     );
-
+//SVG
     return (
       <g
         transform={`scale(${scale}, ${scale}), scale(1,-1) translate(${-this.props.width / 2}, ${-this.props.height / 2})`}>

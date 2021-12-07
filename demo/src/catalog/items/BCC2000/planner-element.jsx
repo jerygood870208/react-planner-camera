@@ -354,7 +354,7 @@ export default {
   info: {
     tag: ['security'],
     title: 'BCC2000',
-    description: 'camera',
+    description: '1080P 118°',
     image: require('./BCC2000.png')
   },
   properties: {
@@ -395,9 +395,22 @@ export default {
             transform={`translate(${WIDTH / 2}, ${DEPTH / 2}) scale(1,-1) rotate(${textRotation})`}
         style={{textAnchor: 'middle', fontSize: '11px'}}>
         {element.type}
+      </text>
+      <circle key='3'
+              cx="5"
+  		        cy="0"
+              r="50"
+              stroke="tomato"
+              strokeWidth="100"
+              style={{strokeOpacity: element.selected? "1" : "0.5"}} 
+              fill="transparent"
+              strokeDasharray ="calc(100 * 3.1415926 * 118/360) 314.15926"
+              strokeDashoffset="calc(-100 * 3.1415926 * 211/360)"/>
+        <text key='4' x='0' y='30'
+              transform={`translate(${WIDTH / 2}, ${DEPTH / 2}) scale(1,-1) rotate(${textRotation})`}
+              style={{textAnchor: 'middle', fontSize: '11px', fill: 'white'}}>
+              {"118°"}
         </text>
-      <polygon key='3' points="5 0, 30 -33.3, -20 -33.3" 
-        style={{stroke: element.selected ? '#0096fd' : '#000', strokeWidth: '1px', fill: '#84e1ce'}} />
         </g>
     )
   },

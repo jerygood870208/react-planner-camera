@@ -5,13 +5,13 @@ import { buildWall, updatedWall } from './wall-factory-3d';
 import * as SharedStyle from '../../shared-style';
 import * as Geometry from '../../utils/geometry';
 import Translator from '../../translator/translator';
-
-var epsilon = 20;
-var STYLE_TEXT = { textAnchor: 'middle' };
-var STYLE_LINE = { stroke: SharedStyle.LINE_MESH_COLOR.selected };
-var STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'url(#diagonalFill)' };
-var STYLE_RECT_SELECTED = _extends({}, STYLE_RECT, { stroke: SharedStyle.LINE_MESH_COLOR.selected });
-
+/*
+const epsilon = 20;
+const STYLE_TEXT = { textAnchor: 'middle' };
+const STYLE_LINE = { stroke: SharedStyle.LINE_MESH_COLOR.selected };
+const STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'url(#diagonalFill)' };
+const STYLE_RECT_SELECTED = { ...STYLE_RECT, stroke: SharedStyle.LINE_MESH_COLOR.selected };
+*/
 var translator = new Translator();
 
 export default function WallFactory(name, info, textures) {
@@ -34,7 +34,15 @@ export default function WallFactory(name, info, textures) {
         defaultValue: {
           length: 20
         }
+      },
+
+      placable: {
+        label: translator.t('placable'),
+        type: 'enum',
+        defaultValue: 'true',
+        values: { 'true': 'True', 'false': 'False' }
       }
+
     },
 
     render2D: function render2D(element, layer, scene) {
@@ -46,10 +54,20 @@ export default function WallFactory(name, info, textures) {
           x2 = _layer$vertices$get2.x,
           y2 = _layer$vertices$get2.y;
 
+      var epsilon = 20;
+      var placable = element.properties.get('placable');
+      //console.log("wall render2D test placable" + placable);
+      var STYLE_TEXT = { textAnchor: 'middle' };
+      var STYLE_LINE = { stroke: SharedStyle.LINE_MESH_COLOR.selected };
+      var STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected,
+        fill: placable == 'false' ? '#ff0000' : 'url(#diagonalFill)' };
+      var STYLE_RECT_SELECTED = _extends({}, STYLE_RECT, { stroke: SharedStyle.LINE_MESH_COLOR.selected });
+
       var length = Geometry.pointsDistance(x1, y1, x2, y2);
       var length_5 = length / 5;
 
       var thickness = element.getIn(['properties', 'thickness', 'length']);
+      //console.log("wall render2D test thickness" + thickness);
       var half_thickness = thickness / 2;
       var half_thickness_eps = half_thickness + epsilon;
       var char_height = 11;
@@ -92,15 +110,8 @@ export default function WallFactory(name, info, textures) {
       textureValues[textureName] = textures[textureName].name;
     }
 
-    wallElement.properties.textureA = {
-      label: translator.t('texture') + ' A',
-      type: 'enum',
-      defaultValue: textureValues.bricks ? 'bricks' : 'none',
-      values: textureValues
-    };
-
-    wallElement.properties.textureB = {
-      label: translator.t('texture') + ' B',
+    wallElement.properties.texture = {
+      label: translator.t('texture'), /* + ' A'*/
       type: 'enum',
       defaultValue: textureValues.bricks ? 'bricks' : 'none',
       values: textureValues

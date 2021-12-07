@@ -101,8 +101,8 @@ export function buildWall(element, layer, scene, textures) {
   var frontMaterial = new MeshBasicMaterial();
   var backMaterial = new MeshBasicMaterial();
 
-  applyTexture(frontMaterial, textures[element.properties.get('textureB')], distance, height);
-  applyTexture(backMaterial, textures[element.properties.get('textureA')], distance, height);
+  applyTexture(frontMaterial, textures[element.properties.get('texture')], distance, height);
+  applyTexture(backMaterial, textures[element.properties.get('texture')], distance, height);
 
   var scaleFactor = faceThickness / thickness;
   var texturedFaceDistance = halfThickness + faceDistance;

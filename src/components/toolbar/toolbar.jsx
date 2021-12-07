@@ -5,6 +5,7 @@ import { FaFile, FaMousePointer, FaPlus } from 'react-icons/fa';
 import ToolbarButton from './toolbar-button';
 import ToolbarSaveButton from './toolbar-save-button';
 import ToolbarLoadButton from './toolbar-load-button';
+import ToolbarLoadImgButton from './toolbar-load-image';//test
 import If from '../../utils/react-if';
 import {
   MODE_IDLE,
@@ -145,7 +146,12 @@ export default class Toolbar extends Component {
           onClick={event => projectActions.openProjectConfigurator()}>
           <MdSettings />
         </ToolbarButton>
-      }
+      },
+      //test
+      {
+        index: 9, condition: allowProjectFileSupport,
+        dom: <ToolbarLoadImgButton state={state} />
+      },
     ];
 
     sorter = sorter.concat(toolbarButtons.map((Component, key) => {

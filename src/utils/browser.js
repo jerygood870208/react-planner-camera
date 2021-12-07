@@ -35,3 +35,27 @@ export function browserUpload() {
     fileInput.click();
   });
 }
+//browserImgUpload
+export function browserImgUpload() {
+  return new Promise(function (resolve, reject) {
+
+    let fileInput = document.createElement('input');
+    fileInput.type = 'file';
+
+    fileInput.addEventListener('change', function (event) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      reader.addEventListener('load', (fileEvent) => {
+        let loadedData = fileEvent.target.result;
+        resolve(loadedData);
+        //console.log('url(${loadedData})')
+        //console.log(loadedData)
+      });
+      reader.readAsDataURL(file);
+      //console.log(file)
+      console.log(reader)
+    });
+
+    fileInput.click();
+  });
+}
