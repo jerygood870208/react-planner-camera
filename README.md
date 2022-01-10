@@ -1,10 +1,10 @@
 # How to Start
-npm install;
-npm uninstall react-redux;
-npm i react-redux@5;
-npm run-script clean;
-npm run-script build;
-npm start
+npm install
+!npm uninstall react-redux
+!npm i react-redux@5
+!npm run-script clean
+!npm run-script build
+!npm start
 
 # react-planner
 
