@@ -1,3 +1,11 @@
+# How to Start
+1. npm install  
+2. npm uninstall react-redux  
+3. npm i react-redux@5  
+4. npm run-script clean  
+5. npm run-script build  
+6. npm start
+
 # react-planner
 
 *react-planner* is a [React][react] component which can be used to draw model buildings. Drag & drop from a catalog of customizable and ready-to-use objects, you can start from 2D wireframes and land on 3D models. As a developer you can provide your users with new objects by adding them to the catalog.
