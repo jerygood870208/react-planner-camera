@@ -348,7 +348,7 @@ function makeObjectMinLOD(){
 
 
 export default {
-  name: 'BCC200',
+  name: 'camera_BCC200',
   prototype: 'items',
 
   info: {
@@ -394,7 +394,7 @@ export default {
       <text key='2' x='0' y='0'
             transform={`translate(${WIDTH / 2}, ${DEPTH / 2}) scale(1,-1) rotate(${textRotation})`}
         style={{textAnchor: 'middle', fontSize: '11px'}}>
-        {element.type}
+        {element.name}
         </text>
         <circle key='3'
               cx="5"

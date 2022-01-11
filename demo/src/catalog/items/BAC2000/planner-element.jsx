@@ -348,12 +348,12 @@ function makeObjectMinLOD(){
 
 
 export default {
-  name: 'BAC2000',
+  name: 'camera_BAC2000',//use element.type to call
   prototype: 'items',
 
   info: {
     tag: ['security'],
-    title: 'BAC2000',
+    title: 'BAC2000', //use element.name to call
     description: '1080P 69°',
     image: require('./BAC2000.png')
   },
@@ -387,6 +387,9 @@ export default {
       textRotation = 180;
     }
 
+    //let cameratitle = element.info.title;
+    //console.log(cameratitle)
+
     return (
       <g transform={`translate(${-WIDTH / 2},${-DEPTH/2})`}>
       <rect key='1' x='0' y='0' width={WIDTH}  height={DEPTH}
@@ -394,7 +397,7 @@ export default {
       <text key='2' x='0' y='0'
             transform={`translate(${WIDTH / 2}, ${DEPTH / 2}) scale(1,-1) rotate(${textRotation})`}
         style={{textAnchor: 'middle', fontSize: '11px'}}>
-        {element.type}
+        {element.name}
       </text>
       <circle key='3'
               cx="5"
