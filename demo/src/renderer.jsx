@@ -99,7 +99,14 @@ ReactDOM.render(
         }
       </ContainerDimensions>
     </Provider>
-    <BasicSpeedDial/>
+    {
+      /*
+      <BasicSpeedDial
+        stateExtractor={state => state.get('react-planner')}
+      />
+      */
+    }
+
     </StyledEngineProvider>
     /*
     <Provider injectSecond store={store}>
