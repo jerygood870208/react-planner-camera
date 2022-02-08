@@ -5,6 +5,7 @@ import Immutable, {Map} from 'immutable';
 import immutableDevtools from 'immutable-devtools';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import {StyledEngineProvider} from '@mui/material/styles';
 
 import MyCatalog from './catalog/mycatalog';
 
@@ -16,6 +17,10 @@ import {
   ReactPlanner,
   Plugins as PlannerPlugins,
 } from 'react-planner'; //react-planner
+
+import ResponsiveAppBar from './components/topbar/topbar';
+import BasicSpeedDial from './components/speeddial/speeddial';
+import './components/speeddial/speeddial.css'
 
 //define state
 let AppState = Map({
@@ -78,7 +83,33 @@ let toolbarButtons = [
 //render
 ReactDOM.render(
   (
-    <Provider store={store}>
+    <StyledEngineProvider injectFirst>
+      <ResponsiveAppBar/>
+      <Provider injectSecond store={store}>
+      <ContainerDimensions>
+        {({width, height}) =>
+          <ReactPlanner
+            catalog={MyCatalog}
+            width={width}
+            height={height-68.5}
+            plugins={plugins}
+            toolbarButtons={toolbarButtons}
+            stateExtractor={state => state.get('react-planner')}
+          />
+        }
+      </ContainerDimensions>
+    </Provider>
+    {
+      /*
+      <BasicSpeedDial
+        stateExtractor={state => state.get('react-planner')}
+      />
+      */
+    }
+
+    </StyledEngineProvider>
+    /*
+    <Provider injectSecond store={store}>
       <ContainerDimensions>
         {({width, height}) =>
           <ReactPlanner
@@ -92,6 +123,7 @@ ReactDOM.render(
         }
       </ContainerDimensions>
     </Provider>
+    */
   ),
   document.getElementById('app')
 );

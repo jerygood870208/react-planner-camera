@@ -11,7 +11,8 @@ import {
   ToolbarComponents,
   Content,
   SidebarComponents,
-  FooterBarComponents
+  FooterBarComponents,
+  BasicSpeedDial
 } from './components/export';
 import {VERSION} from './version';
 import './styles/export';
@@ -58,19 +59,28 @@ class ReactPlanner extends Component {
   render() {
     let {width, height, state, stateExtractor, ...props} = this.props;
 
-    let contentW = width - toolbarW - sidebarW;
+    let contentW = width - sidebarW;
     let toolbarH = height - footerBarH;
-    let contentH = height - footerBarH;
-    let sidebarH = height - footerBarH;
+    let contentH = height;// - footerBarH;
+    let sidebarH = height;// - footerBarH;
 
     let extractedState = stateExtractor(state);
 
     return (
       <div style={{...wrapperStyle, height}}>
+        {/*
         <Toolbar width={toolbarW} height={toolbarH} state={extractedState} {...props} />
+        */}
+        
         <Content width={contentW} height={contentH} state={extractedState} {...props} onWheel={event => event.preventDefault()} />
+
         <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
-        <FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
+
+        <BasicSpeedDial state={extractedState} {...props} />
+  {            
+        //<FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
+  }
+        
       </div>
     );
   }

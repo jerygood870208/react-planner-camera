@@ -6,9 +6,9 @@ import * as Three from 'three';
 
 let translator = new Translator();
 
-export default function LineFactory(name, info) {
+export default function TargetFactory(name, info) {
 
-  let lineElement = {
+  let targetElement = {
     name,
     prototype: 'lines',
     info,
@@ -19,7 +19,7 @@ export default function LineFactory(name, info) {
 
       let epsilon = 20;
       let STYLE_LINE = { stroke: SharedStyle.LINE_MESH_COLOR.selected };
-      let STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'blue'};
+      let STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'green'};
       let STYLE_RECT_SELECTED = { ...STYLE_RECT, stroke: SharedStyle.LINE_MESH_COLOR.selected };
 
       let length = Geometry.pointsDistance(x1, y1, x2, y2);
@@ -44,5 +44,5 @@ export default function LineFactory(name, info) {
       return Promise.resolve(new Three.Object3D());
     },
   };
-  return lineElement;
+  return targetElement;
 }
