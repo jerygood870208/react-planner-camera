@@ -59,12 +59,10 @@ class ReactPlanner extends Component {
   render() {
     let {width, height, state, stateExtractor, ...props} = this.props;
 
-    let contentW = width// - toolbarW - sidebarW;
+    let contentW = width - sidebarW;
     let toolbarH = height - footerBarH;
-    let contentH = height// - footerBarH;
-    let sidebarH = height - footerBarH;
-    //
-    //state = 'OPEN_CATALOG';
+    let contentH = height;// - footerBarH;
+    let sidebarH = height;// - footerBarH;
 
     let extractedState = stateExtractor(state);
 
@@ -76,11 +74,10 @@ class ReactPlanner extends Component {
         
         <Content width={contentW} height={contentH} state={extractedState} {...props} onWheel={event => event.preventDefault()} />
 
-        <BasicSpeedDial width={toolbarW} height={toolbarH} state={extractedState} {...props} />
-        {
-        //<Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
-        
-        
+        <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
+
+        <BasicSpeedDial state={extractedState} {...props} />
+  {            
         //<FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
   }
         

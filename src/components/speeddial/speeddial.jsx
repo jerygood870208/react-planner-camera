@@ -33,7 +33,7 @@ export default class BasicSpeedDial extends Component{
     } = this;
 
     return (
-      <Container maxWidth="xl">
+      <Container maxWidth='sm'>
         <SpeedDial
           ariaLabel="SpeedDial basic example"
           sx={{ position: 'absolute', bottom: 16, right: 16}}
@@ -56,8 +56,8 @@ export default class BasicSpeedDial extends Component{
 
 BasicSpeedDial.propTypes = {
   state: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  //width: PropTypes.number.isRequired,
+  //height: PropTypes.number.isRequired,
   allowProjectFileSupport: PropTypes.bool.isRequired,
   toolbarButtons: PropTypes.array
 };

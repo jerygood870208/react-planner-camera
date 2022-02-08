@@ -4,3 +4,8 @@
 .MuiSpeedDial-fab:hover {
     background-color: #FF8200;
 }
+.MuiContainer-root {
+  max-width: 0px;
+  padding-left: 0;
+  padding-right: 0px;
+}
