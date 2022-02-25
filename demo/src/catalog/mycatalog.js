@@ -14,6 +14,6 @@ for( let x in Items ) catalog.registerElement( Items[x] );
 
 //catalog.registerCategory('windows', 'Windows', [Holes.window, Holes.sashWindow, Holes.venetianBlindWindow, Holes.windowCurtain] );
 //catalog.registerCategory('doors', 'Doors', [Holes.door, Holes.doorDouble, Holes.panicDoor, Holes.panicDoorDouble, Holes.slidingDoor] );
-catalog.registerCategory('cameras', 'Cameras', [Items.BCC2000, Items.BCC200, Items.BAC2000, Items.MAC200DN ] );
+//catalog.registerCategory('cameras', 'Cameras', [Items.BCC2000, Items.BCC200, Items.BAC2000, Items.MAC200DN ] );
 
 export default catalog;

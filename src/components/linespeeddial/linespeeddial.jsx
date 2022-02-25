@@ -9,17 +9,18 @@ import PrintIcon from '@mui/icons-material/Print';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import FlagIcon from '@mui/icons-material/Flag';
 import Container from '@mui/material/Container';
+import CreateIcon from '@mui/icons-material/Create';
 
 import {
   MODE_VIEWING_CATALOG
 } from '../../constants';
-
+/*
 const actions = [
-  { icon: <CameraAltIcon />, name: 'Camera' },
-  { icon: <FlagIcon />, name: 'Target' },
+  { icon: <CameraAltIcon />, name: 'Camera', do: () => itemsActions.selectToolDrawingItem('camera_BAC2000')},
+  { icon: <FlagIcon />, name: 'Target' , do: () => console.log("click speeddial Target")},
 ];
-
-export default class BasicSpeedDial extends Component{
+*/
+export default class LineSpeedDial extends Component{
 
   constructor(props, context) {
     super(props, context);
@@ -29,23 +30,30 @@ export default class BasicSpeedDial extends Component{
   render() {
 
     let {
-      context: { projectActions }
+      context: { itemsActions,  linesActions}
     } = this;
 
+    const actions = [
+      { icon: <CreateIcon />, name: "Area I want", do: () => linesActions.selectToolDrawingLine('install area')},
+      { icon: <CreateIcon />, name: "Area I don't want" , do: () => linesActions.selectToolDrawingLine('wall')},
+    ];
+
     return (
-      <Container maxWidth='sm'>
+      <Container 
+        maxWidth='sm'
+        sx={{ pl: 0, pr: 0}}
+        >
         <SpeedDial
-          ariaLabel="SpeedDial basic example"
+          ariaLabel="Line SpeedDial"
           sx={{ position: 'absolute', bottom: 16, right: 16}}
-          icon={<SpeedDialIcon />}
+          icon={<CreateIcon />}
         >
           {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              //onClick={event => projectActions.openCatalog()}
-              onClick={event => projectActions.setMode( MODE_VIEWING_CATALOG )}
+              onClick={action.do}
             />
           ))}
         </SpeedDial>
@@ -54,7 +62,7 @@ export default class BasicSpeedDial extends Component{
   }
 }
 
-BasicSpeedDial.propTypes = {
+LineSpeedDial.propTypes = {
   state: PropTypes.object.isRequired,
   //width: PropTypes.number.isRequired,
   //height: PropTypes.number.isRequired,
@@ -62,7 +70,7 @@ BasicSpeedDial.propTypes = {
   toolbarButtons: PropTypes.array
 };
 
-BasicSpeedDial.contextTypes = {
+LineSpeedDial.contextTypes = {
   projectActions: PropTypes.object.isRequired,
   viewer2DActions: PropTypes.object.isRequired,
   viewer3DActions: PropTypes.object.isRequired,

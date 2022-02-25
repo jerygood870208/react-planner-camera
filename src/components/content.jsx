@@ -12,6 +12,7 @@ export default function Content({width, height, state, customContents}) {
   let mode = state.get('mode');
 
   switch (mode) {
+    /*
     case constants.MODE_3D_VIEW:
       return <Viewer3D state={state} width={width} height={height}/>;
 
@@ -20,7 +21,7 @@ export default function Content({width, height, state, customContents}) {
 
     case constants.MODE_VIEWING_CATALOG:
       return <CatalogList state={state} width={width} height={height}/>;
-
+    */
     case constants.MODE_IDLE:
     case constants.MODE_2D_ZOOM_IN:
     case constants.MODE_2D_ZOOM_OUT:

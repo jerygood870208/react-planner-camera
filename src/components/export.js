@@ -4,7 +4,8 @@ import SidebarComponents from './sidebar/export';
 import FooterBarComponents from './footerbar/export';
 import Viewer2DComponents from './viewer2d/export';
 import StyleComponents from './style/export';
-import BasicSpeedDial from './speeddial/speeddial';
+import LineSpeedDial from './linespeeddial/linespeeddial';
+import CameraSpeedDial from './cameraspeeddial/cameraspeeddial';
 
 export {
   ToolbarComponents,
@@ -13,7 +14,8 @@ export {
   FooterBarComponents,
   Viewer2DComponents,
   StyleComponents,
-  BasicSpeedDial
+  LineSpeedDial,
+  CameraSpeedDial
 };
 
 export default {
@@ -23,5 +25,6 @@ export default {
   FooterBarComponents,
   Viewer2DComponents,
   StyleComponents,
-  BasicSpeedDial
+  LineSpeedDial,
+  CameraSpeedDial
 };

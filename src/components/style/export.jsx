@@ -25,7 +25,7 @@ export {
   FormSelect,
   FormSlider,
   FormSubmitButton,
-  FormTextInput
+  FormTextInput,
 };
 
 export default {
@@ -41,5 +41,5 @@ export default {
   FormSelect,
   FormSlider,
   FormSubmitButton,
-  FormTextInput
+  FormTextInput,
 };

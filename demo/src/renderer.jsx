@@ -91,7 +91,7 @@ ReactDOM.render(
           <ReactPlanner
             catalog={MyCatalog}
             width={width}
-            height={height-68.5}
+            height={height/*-68.5*/}
             plugins={plugins}
             toolbarButtons={toolbarButtons}
             stateExtractor={state => state.get('react-planner')}

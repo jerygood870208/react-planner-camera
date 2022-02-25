@@ -12,7 +12,9 @@ import {
   Content,
   SidebarComponents,
   FooterBarComponents,
-  BasicSpeedDial
+  LineSpeedDial,
+  CameraSpeedDial,
+  Sidepanel
 } from './components/export';
 import {VERSION} from './version';
 import './styles/export';
@@ -55,16 +57,28 @@ class ReactPlanner extends Component {
       projectActions.initCatalog(catalog);
     }
   }
+  
+  constructor(){
+    super();
+    this.state = {
+      showHideSidepanel: true
+    };
+  }
+
+  hideSidepanel(){
+    this.setState({ showHideSidepanel: !this.state.showHideSidepanel });
+  }
 
   render() {
     let {width, height, state, stateExtractor, ...props} = this.props;
 
-    let contentW = width - sidebarW;
+    let contentW = width; //- sidebarW;
     let toolbarH = height - footerBarH;
     let contentH = height;// - footerBarH;
     let sidebarH = height;// - footerBarH;
 
     let extractedState = stateExtractor(state);
+    let showHideSidepanel = this.state.showHideSidepanel;
 
     return (
       <div style={{...wrapperStyle, height}}>
@@ -74,14 +88,17 @@ class ReactPlanner extends Component {
         
         <Content width={contentW} height={contentH} state={extractedState} {...props} onWheel={event => event.preventDefault()} />
 
-        <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
+        <LineSpeedDial state={extractedState} {...props} />
 
-        <BasicSpeedDial state={extractedState} {...props} />
-  {            
+        <CameraSpeedDial state={extractedState} {...props} />
+
+  {
+        //<Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />            
         //<FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
   }
         
       </div>
+  
     );
   }
 }

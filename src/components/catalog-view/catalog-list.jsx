@@ -10,11 +10,12 @@ import * as SharedStyle from '../../shared-style';
 
 const containerStyle = {
   position: 'fixed',
-  width:'calc( 100% - 51px)',
-  height:'calc( 100% - 20px)',
+  width:'calc( 25% - 51px)',
+  height:'calc( 100% - 149px)',
   backgroundColor:'#FFF',
   padding:'1em',
-  left:50,
+  right:0,
+  bottom:80,
   overflowY:'auto',
   overflowX:'hidden',
   zIndex:10
@@ -149,7 +150,7 @@ export default class CatalogList extends Component {
     let page = this.props.state.catalog.page;
     let currentCategory = this.context.catalog.getCategory(page);
     let categoriesToDisplay = currentCategory.categories;
-    let elementsToDisplay = currentCategory.elements.filter(element => element.info.visibility ? element.info.visibility.catalog : true );
+    let elementsToDisplay = currentCategory.elements.filter(element => element.info.visibility ? /*element.info.visibility.catalog*/false : true );
 
     let breadcrumbComponent = null;
 
@@ -182,18 +183,20 @@ export default class CatalogList extends Component {
 
     return (
       <ContentContainer width={this.props.width} height={this.props.height} style={{...containerStyle, ...this.props.style}}>
-        <ContentTitle>{this.context.translator.t('Catalog')}</ContentTitle>
+        <ContentTitle>{this.context.translator.t('Camera')}</ContentTitle>
         {breadcrumbComponent}
+        {/*
         <div style={searchContainer}>
           <span style={searchText}>{this.context.translator.t('Search Element')}</span>
           <input type="text" style={searchInput} onChange={( e ) => { this.matcharray( e.target.value ); } }/>
         </div>
-        { selectedHistory.size ?
+        */}
+        { /*selectedHistory.size ?
           <div style={historyContainer}>
             <span>{this.context.translator.t('Last Selected')}</span>
             {selectedHistoryElements}
           </div> :
-          null
+          null*/
         }
         <div style={itemsStyle}>
           {

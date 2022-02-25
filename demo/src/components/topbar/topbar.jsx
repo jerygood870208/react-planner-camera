@@ -36,7 +36,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{bgcolor:"#222"}}>
+    <AppBar position="absolute" sx={{bgcolor:"#222"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img  src={mainLogo} alt="fireSpot"/>
