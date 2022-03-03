@@ -259,7 +259,7 @@ export var Group = function (_Record9) {
 }), 'Group'));
 
 export var DefaultLayers = new Map({
-  'layer-1': new Layer({ id: 'layer-1', name: 'default' })
+  'layer1': new Layer({ id: 'layer1', name: 'default' })
 });
 
 export var Scene = function (_Record10) {

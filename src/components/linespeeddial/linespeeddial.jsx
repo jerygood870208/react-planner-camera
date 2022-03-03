@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import FlagIcon from '@mui/icons-material/Flag';
 import Container from '@mui/material/Container';
 import CreateIcon from '@mui/icons-material/Create';
+import { createSvgIcon } from '@mui/material/utils';
 
-import {
-  MODE_VIEWING_CATALOG
-} from '../../constants';
-/*
-const actions = [
-  { icon: <CameraAltIcon />, name: 'Camera', do: () => itemsActions.selectToolDrawingItem('camera_BAC2000')},
-  { icon: <FlagIcon />, name: 'Target' , do: () => console.log("click speeddial Target")},
-];
-*/
 export default class LineSpeedDial extends Component{
 
   constructor(props, context) {
@@ -33,9 +19,25 @@ export default class LineSpeedDial extends Component{
       context: { itemsActions,  linesActions}
     } = this;
 
+    const PencilAddIcon = createSvgIcon(
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" version="1.1">
+        <path d="m3,17.25l0,3.75l3.75,0l11.06,-11.06l-3.75,-3.75l-11.06,11.06zm17.71,-10.21c0.39,-0.39 0.39,-1.02 0,-1.41l-2.34,-2.34a0.9959,0.9959 0 0 0 -1.41,0l-1.83,1.83l3.75,3.75l1.83,-1.83z"/>
+        <path d="m3,4.69376l1.69376,0l0,-1.69376l1.73748,0l0,1.69376l1.69376,0l0,1.73748l-1.69376,0l0,1.69376l-1.73748,0l0,-1.69376l-1.69376,0l0,-1.73748z"/>
+      </svg>,
+      'PencilAdd',
+    );
+
+    const PencilMinusIcon = createSvgIcon(
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" version="1.1">
+        <path d="m3,17.25l0,3.75l3.75,0l11.06,-11.06l-3.75,-3.75l-11.06,11.06zm17.71,-10.21c0.39,-0.39 0.39,-1.02 0,-1.41l-2.34,-2.34a0.9959,0.9959 0 0 0 -1.41,0l-1.83,1.83l3.75,3.75l1.83,-1.83z"/>
+        <path d="m3.07889,4.68632l5.41487,0l0,1.73299l-5.41487,0l0,-1.73299z"/>
+      </svg>,
+      'PencilMinus',
+    );
+
     const actions = [
-      { icon: <CreateIcon />, name: "Area I want", do: () => linesActions.selectToolDrawingLine('install area')},
-      { icon: <CreateIcon />, name: "Area I don't want" , do: () => linesActions.selectToolDrawingLine('wall')},
+      { icon: <PencilAddIcon />, name: "Area I want", do: () => linesActions.selectToolDrawingLine('install area')},
+      { icon: <PencilMinusIcon />, name: "Area I don't want" , do: () => linesActions.selectToolDrawingLine('wall')},
     ];
 
     return (

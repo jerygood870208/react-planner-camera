@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Sidepanel from '../sidepanel';
 import Fab from '@mui/material/Fab';
 
-export default class CameraSpeedDial extends Component{
+export default class CameraDefault extends Component{
 
   constructor(props, context) {
     super(props, context);
@@ -16,6 +16,23 @@ export default class CameraSpeedDial extends Component{
 
   hideSidepanel(){
     this.setState({ showHideSidepanel: !this.state.showHideSidepanel });
+  }
+
+  getLS(){
+    const data = JSON.parse(localStorage.getItem('react-planner_v0'));
+    let lines = Object.entries(data.layers.layer1.lines);
+    const linesarr = Object.keys(lines);
+    let wantArea = [];
+    //const wantAreanum = lines.filter(i => i.type === "install area").length
+    /*
+    for(let i=0;i<linesarr.length;i++){
+      if(lines.linesarr[i].type=="install area"){
+        wantArea.append(lines.linesarr[i].vertices)
+      }
+    }
+    */
+    console.log(lines);
+    console.log(months);
   }
   
   render() {
@@ -37,10 +54,10 @@ export default class CameraSpeedDial extends Component{
               sx={
               {position: 'absolute',
               bottom: 16,
-              right: 16+80,
+              right: 16+80+80,
               backgroundColor: '#FF8200',
               "&:hover": {backgroundColor: '#FF8200'}}}
-              onClick={() => this.hideSidepanel()}
+              onClick={() => this.getLS()}
               aria-label="Add Camera">
                 <CameraAltIcon
                   style={{ fill: 'white' }} 
@@ -53,7 +70,7 @@ export default class CameraSpeedDial extends Component{
   }
 }
 
-CameraSpeedDial.propTypes = {
+CameraDefault.propTypes = {
   state: PropTypes.object.isRequired,
   //width: PropTypes.number.isRequired,
   //height: PropTypes.number.isRequired,
@@ -61,7 +78,7 @@ CameraSpeedDial.propTypes = {
   toolbarButtons: PropTypes.array
 };
 
-CameraSpeedDial.contextTypes = {
+CameraDefault.contextTypes = {
   projectActions: PropTypes.object.isRequired,
   viewer2DActions: PropTypes.object.isRequired,
   viewer3DActions: PropTypes.object.isRequired,

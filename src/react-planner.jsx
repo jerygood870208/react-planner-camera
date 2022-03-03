@@ -14,7 +14,8 @@ import {
   FooterBarComponents,
   LineSpeedDial,
   CameraSpeedDial,
-  Sidepanel
+  Sidepanel,
+  CameraDefault
 } from './components/export';
 import {VERSION} from './version';
 import './styles/export';
@@ -91,6 +92,8 @@ class ReactPlanner extends Component {
         <LineSpeedDial state={extractedState} {...props} />
 
         <CameraSpeedDial state={extractedState} {...props} />
+
+        {/*<CameraDefault state={extractedState} {...props} />*/}
 
   {
         //<Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />            
