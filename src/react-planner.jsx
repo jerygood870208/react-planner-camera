@@ -29,7 +29,7 @@ const sidebarW = 300;
 const footerBarH= 20;
 
 const wrapperStyle = {
-  display: 'flex',
+  // display: 'flex',
   flexFlow: 'row nowrap'
 };
 

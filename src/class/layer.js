@@ -8,6 +8,7 @@ import {
 import { Layer as LayerModel } from '../models';
 
 const sameSet = (set1, set2) => set1.size === set2.size && set1.isSuperset(set2) && set1.isSubset(set2);
+let firstArea = true; //control place default camera
 
 class Layer{
 
@@ -126,8 +127,7 @@ class Layer{
         state = state.setIn(['scene', 'layers', layerID, 'areas', areaIDs[ind], 'holes'], new List());
       } else {
         let areaVerticesCoords = cycle.map(vertexID => state.getIn(['scene', 'layers', layerID, 'vertices', vertexID]));
-        let resultAdd = Area.add(state, layerID, 'area', areaVerticesCoords, state.catalog);
-
+        let resultAdd = Area.add(state, layerID, 'area', areaVerticesCoords, state.catalog);        
         areaIDs[ind] = resultAdd.area.id;
         state = resultAdd.updatedState;
       }
@@ -143,11 +143,13 @@ class Layer{
     });
 
     // Find all holes for an area
-    let i, j;
-    for (i = 0; i < verticesCoordsForArea.length; i++) {
+    //let i, j;
+    let areaVerticesList = new Array();
+    for (let i = 0; i < verticesCoordsForArea.length; i++) {
       let holesList = new List(); // The holes for this area
-      let areaVerticesList = verticesCoordsForArea[i].vertices.flatten().toArray();
-      for (j = 0; j < verticesCoordsForArea.length; j++) {
+      areaVerticesList = verticesCoordsForArea[i].vertices.flatten().toArray();
+      console.log(areaVerticesList);
+      for (let j = 0; j < verticesCoordsForArea.length; j++) {
         if (i !== j) {
           let isHole = GeometryUtils.ContainsPoint(areaVerticesList,
             verticesCoordsForArea[j].vertices.get(0).get(0),
@@ -175,6 +177,29 @@ class Layer{
       });
       state = state.setIn(['scene', 'layers', layerID, 'areas', areaID, 'holes'], areaHoles);
     });
+
+    // Add Default Camera
+    let allX = new Array();
+    let allY = new Array();
+    for (let i = 0; i < areaVerticesList.length; i++) {
+      if (i%2==0){
+        allX.push(areaVerticesList[i]);
+      }
+      else{
+        allY.push(areaVerticesList[i]);
+      }
+    }
+    if (allX.length!=0&firstArea){
+      firstArea = false;
+      let Xmax = Math.max(...allX);
+      let Xmin = Math.min(...allX);
+      let Ymax = Math.max(...allY);
+      let Ymin = Math.min(...allY);
+      state = Item.create( state, layerID, 'camera_BAC2000', Xmax, Ymax, 200, 100, -45 ).updatedState;
+      state = Item.create( state, layerID, 'camera_BAC2000', Xmax, Ymin, 200, 100, -135 ).updatedState;
+      state = Item.create( state, layerID, 'camera_BAC2000', Xmin, Ymax, 200, 100, 45 ).updatedState;
+      state = Item.create( state, layerID, 'camera_BAC2000', Xmin, Ymin, 200, 100, 135 ).updatedState;
+    }
 
     return { updatedState: state };
   }
